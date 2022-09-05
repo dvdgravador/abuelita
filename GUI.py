@@ -2,7 +2,6 @@ import tkinter as tk
 import os
 import vlc
 import time
-from itertools import cycle
 from PIL import ImageTk, Image
 
 
