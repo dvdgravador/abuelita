@@ -41,7 +41,12 @@ for x in images:
    
 displayCanvas = tk.Label(root)
 displayCanvas.pack(expand=1, fill=tk.BOTH)
-displayCanvas.config(image=photos[n])  # primera imagen en pantalla 
+ 
+
+def actualizarImagen(imagen):
+    displayCanvas.config(image=photos[imagen])
+
+actualizarImagen(n)  # primera imagen en pantalla
 
 def right(event):
     global n
@@ -51,8 +56,7 @@ def right(event):
         n += 1
     if n == t:
         n = 0
-    print(n)
-    displayCanvas.config(image=photos[n])   #se actualiza la imagen
+    actualizarImagen(n)   #se actualiza la imagen
 
     
 def left(event):
@@ -64,7 +68,7 @@ def left(event):
     else:
         n = t
                                
-    displayCanvas.config(image=photos[n])
+    actualizarImagen(n)
     
 
 
@@ -81,6 +85,9 @@ def reproducir(event):
     time.sleep(duration+1.5)
     media_player.stop()
 
+
+    
+    
 
 
 
