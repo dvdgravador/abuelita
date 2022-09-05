@@ -14,8 +14,8 @@ for fichero in contenido:
     if os.path.isfile(os.path.join(directorio, fichero)) and fichero.endswith('.jpg'):   # solo si es archivo y con extension jpg lo añade
         images.append(fichero)
 
-t = len(images)   
-n = 0
+t = len(images)   # cantidad de imagenes en el directorio pictures
+n = 0             # variable para almacenar posición
 #print(t)
 #print(images)
 
