@@ -66,7 +66,7 @@ def left(event):
     if n <= t and n != 0:
         n -= 1
     else:
-        n = t
+        n = t-1
                                
     actualizarImagen(n)
     
