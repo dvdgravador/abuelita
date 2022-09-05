@@ -83,9 +83,6 @@ def reproducir(event):
     media_player.stop()
 
 
-    
-    
-
 
 
 root.bind('<Escape>', lambda e: root.destroy()) # permite que se salga del programa pulsando escape
