@@ -43,12 +43,9 @@ class Player(Tk.Frame):
         self.parent.bind('<Right>', self.OnMove) 
         self.parent.bind('<Left>', self.OnMove)
         self.parent.bind('<Return>', self.OnOpen)  
-        self.parent.bind('<<MediaFinish>>', self.OnOpen)  
         
         self.Instance = vlc.Instance()
         self.player = self.Instance.media_player_new()
-        self.events = self.player.event_manager()
-        self.events.event_attach(vlc.EventType.MediaPlayerEndReached, self.mediaFinish)
 
         self.parent.update()
     
@@ -73,21 +70,9 @@ class Player(Tk.Frame):
     def OnOpen(self, evt):
         """Pop up a new dialow window to choose a file, then play the selected file.
         """
-        sleep(2)
-        self.player.set_hwnd(0)
-        if self.is_playing:
-            if self.player.is_playing():
-                self.player.stop()
-            else:
-                print("VAMOS A REPRODUCRILO")
-                self.Media = self.Instance.media_new("videos/" + str(self.position) + ".mp4")
-                print("VAMOS A 1")
-                self.player.set_media(self.Media)
-                print("VAMOS A 2")
-                self.player.play()
-                print("VAMOS A 3")
-                self.player.stop()
-                print("VAMOS A 4")
+        if self.player.is_playing():
+            self.player.stop()
+            self.player.set_hwnd(0)
             self.is_playing = False
         else:
             self.Media = self.Instance.media_new("videos/" + str(self.position) + ".mp4")
@@ -95,10 +80,7 @@ class Player(Tk.Frame):
             self.player.set_hwnd(self.GetHandle())
             self.player.play()
             self.is_playing = True
-    
-    def mediaFinish(self, evnt):
-        self.parent.event_generate("<<MediaFinish>>")
-    
+        
     def OnMove(self, evt):
         if evt.keysym == "Right":
             self.position += 1
