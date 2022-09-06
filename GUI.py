@@ -1,5 +1,5 @@
 import tkinter as tk
-import os
+import os 
 import vlc
 import time
 from PIL import ImageTk, Image
@@ -7,16 +7,20 @@ from PIL import ImageTk, Image
 
 
 directorio = 'pictures'
-contenido = os.listdir(directorio)
+cont = os.listdir(directorio)
+contenido= sorted(cont, key=lambda s: int(s.split('.')[0][0:])) # para ordenar los elementos de la lista
+
+
 images = []
 
 for fichero in contenido:                
-    if os.path.isfile(os.path.join(directorio, fichero)) and fichero.endswith('.jpg'):   # solo si es archivo y con extension jpg lo añade
+    if os.path.isfile(os.path.join(directorio, fichero)) and fichero.endswith('.png'):   # solo si es archivo y con extension jpg lo añade
         images.append(fichero)
 
-t = len(images)   # cantidad de imagenes en el directorio pictures
-n = 0             # variable para almacenar posición
+t = len(images)   
+n = 0
 #print(t)
+
 #print(images)
 
 
@@ -56,8 +60,7 @@ def right(event):
         n += 1
     if n == t:
         n = 0
-    actualizarImagen(n)   #se actualiza la imagen
-
+    actualizarImagen(n)   
     
 def left(event):
     global n
@@ -66,13 +69,13 @@ def left(event):
     if n <= t and n != 0:
         n -= 1
     else:
-        n = t-1
-                               
+        n = t-1        
+    print(n)                   
     actualizarImagen(n)
     
 
-
 def reproducir(event):
+
     
     media_player = vlc.MediaPlayer()
     media_player.set_fullscreen(True)
